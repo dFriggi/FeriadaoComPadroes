@@ -1,11 +1,11 @@
 import { UserSession } from "../Singleton/UserSession(singleton)";
 
 interface ConfirmSession {
-  getSession(name: string): UserSession;
+  getSession(name: string | null): UserSession;
 }
 
-class SessionSearch implements ConfirmSession {
-  public getSession(name: string): UserSession {
+export class SessionSearch implements ConfirmSession {
+  public getSession(name: string | null): UserSession {
     const session = UserSession.getSession();
 
     console.log("Searching/Updating session...");
@@ -19,7 +19,7 @@ export class SessionProxy implements ConfirmSession {
   private cacheUser: string | null = null;
   constructor(private search: ConfirmSession) {}
 
-  getSession(name: string): UserSession {
+  getSession(name: string | null): UserSession {
     const session = UserSession.getSession();
 
     if (this.cacheUser === name) {

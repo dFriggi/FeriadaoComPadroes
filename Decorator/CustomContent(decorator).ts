@@ -1,5 +1,7 @@
 import { Factory, Content } from "../Factory/Content(factory)";
 
+export type ComplementType = "listening" | "speaking" | "reading";
+
 class ContentDecorator implements Content {
   constructor(private content: Content) {}
 
@@ -23,7 +25,7 @@ export class ListeningContent extends ContentDecorator {
   }
 
   public getContent(): string {
-    return super.getContent() + "Listening";
+    return super.getContent() + ", Listening";
   }
 }
 
@@ -38,7 +40,7 @@ export class SpeakingContent extends ContentDecorator {
   }
 
   public getContent(): string {
-    return super.getContent() + "Speaking";
+    return super.getContent() + ", Speaking";
   }
 }
 
@@ -53,6 +55,6 @@ export class ReadingContent extends ContentDecorator {
   }
 
   public getContent(): string {
-    return super.getContent() + "Reading";
+    return super.getContent() + ", Reading";
   }
 }
