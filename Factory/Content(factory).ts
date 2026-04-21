@@ -1,4 +1,4 @@
-import { ExerciseAdaptor } from "./ExerciseAdaptor(adaptor)";
+import { ExerciseAdaptor } from "../Adaptor/ExerciseAdaptor(adaptor)";
 
 type ContentType = "video" | "quiz" | "test" | "exercise";
 
