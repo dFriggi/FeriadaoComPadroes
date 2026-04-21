@@ -6,4 +6,8 @@ export class ExerciseAdaptor implements Content {
   play(): void {
     this.exercises.start();
   }
+
+  getContent(): string {
+    return "External exercises";
+  }
 }

@@ -4,23 +4,36 @@ type ContentType = "video" | "quiz" | "test" | "exercise";
 
 export interface Content {
   play(): void;
+  getContent(): string;
 }
 
-class VideoLesson implements Content {
+export class VideoLesson implements Content {
   play(): void {
     console.log("Playing video lesson!");
   }
-}
 
-class QuizLesson implements Content {
-  play(): void {
-    console.log("Opening Quiz!");
+  getContent(): string {
+    return "Video";
   }
 }
 
-class TestLesson implements Content {
+export class QuizLesson implements Content {
+  play(): void {
+    console.log("Opening Quiz!");
+  }
+
+  getContent(): string {
+    return "Quiz";
+  }
+}
+
+export class TestLesson implements Content {
   play(): void {
     console.log("Opening your test, good luck!");
+  }
+
+  getContent(): string {
+    return "Test";
   }
 }
 
