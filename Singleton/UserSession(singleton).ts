@@ -10,7 +10,7 @@ export class UserSession {
     return this.instance;
   }
 
-  public setSession(name: string): void {
+  public setSession(name: string | null): void {
     if (name) this.sessionUser = name;
   }
 

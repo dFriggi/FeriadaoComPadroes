@@ -1,6 +1,6 @@
 import { ExerciseAdaptor } from "../Adaptor/ExerciseAdaptor(adaptor)";
 
-type ContentType = "video" | "quiz" | "test" | "exercise";
+export type ContentType = "video" | "quiz" | "test" | "exercise";
 
 export interface Content {
   play(): void;
@@ -43,7 +43,7 @@ export class ExercisesLesson {
 
   public start() {
     this.exercises.forEach((exercise) =>
-      console.log(`Exercise ${exercise} finished!`),
+      console.log(`Opening exercise ${exercise}!`),
     );
   }
 }
