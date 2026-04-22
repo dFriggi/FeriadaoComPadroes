@@ -6,9 +6,15 @@ import {
   ReadingContent,
   ComplementType,
 } from "../Decorator/CustomContent(decorator)";
+import {
+  AutoCorrection,
+  TeacherCorrection,
+  CorrectionStrategy,
+} from "../Strategy/Correction(strategy)";
 
 class TeacherUpdates {
-  studentsObservers: Observer[] = [];
+  private studentsObservers: Observer[] = [];
+  private strategy: CorrectionStrategy = new TeacherCorrection();
 
   public addObserver(observer: Observer): void {
     this.studentsObservers.push(observer);
@@ -25,9 +31,17 @@ class TeacherUpdates {
       observer.update(this, activity);
     });
   }
+
+  public setCorrectionStrategy(strategy: CorrectionStrategy) {
+    this.strategy = strategy;
+  }
+
+  public correct(activity: Content) {
+    this.strategy.correct(activity);
+  }
 }
 
-class Teacher extends TeacherUpdates {
+export class Teacher extends TeacherUpdates {
   private name: string | null = null;
 
   setName(name: string) {
@@ -74,12 +88,18 @@ interface Observer {
   update(subject: TeacherUpdates, activity: Content): void;
 }
 
-class Student implements Observer {
+export class Student implements Observer {
   constructor(private name: string) {}
 
   public update(subject: TeacherUpdates, activity: Content): void {
     console.log(`Student ${this.name} received ${activity.getContent()}`);
     activity.play();
     console.log(`Student ${this.name} finished ${activity.getContent()}`);
+
+    subject.setCorrectionStrategy(new TeacherCorrection());
+    subject.correct(activity);
+
+    subject.setCorrectionStrategy(new AutoCorrection());
+    subject.correct(activity);
   }
 }
